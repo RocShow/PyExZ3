@@ -4,11 +4,11 @@
 # cover the then branch.
 
 def power(x):
-	if (x+2) ** 2 == 4:
-		return 0
-	else:
-		return 1
+    if (x + 2) ** 2 == 4:
+        return 0
+    else:
+        return 1
+
 
 def expected_result():
-	return [0]
-
+    return [0]

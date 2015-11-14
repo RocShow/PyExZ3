@@ -3,7 +3,7 @@
 # Test if engine explores all paths
 
 def elseif(in1):
-    if in1 ==  0:
+    if in1 == 0:
         return 0
     elif in1 == 1:
         return 1
@@ -25,5 +25,6 @@ def elseif(in1):
         return 9
     return 10
 
+
 def expected_result():
-	return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]

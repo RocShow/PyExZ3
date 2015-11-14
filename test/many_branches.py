@@ -28,5 +28,6 @@ def many_branches(in1, in2, in3):
 
     return 0
 
+
 def expected_result():
-	return [1, 2, 3, 4, 5, 6, 7, 8]
+    return [1, 2, 3, 4, 5, 6, 7, 8]

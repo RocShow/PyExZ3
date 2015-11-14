@@ -1,8 +1,5 @@
 import logging
 
-import utils
-
-import CVC4
 from CVC4 import ExprManager, SmtEngine, SExpr
 
 from symbolic.cvc_expr.exprbuilder import ExprBuilder
@@ -69,7 +66,8 @@ class CVCWrapper(object):
     @staticmethod
     def _getModel(variables):
         """Retrieve the model generated for the path expression."""
-        return {name: cvc_var.getvalue() for (name, cvc_var) in variables.items()}
+        return {name: cvc_var.getvalue() for (name, cvc_var) in
+                variables.items()}
 
     @staticmethod
     def _coneOfInfluence(asserts, query):
@@ -82,7 +80,8 @@ class CVCWrapper(object):
             a_vars = set(a.getVars())
             cone_vars = cone_vars.union(a_vars)
             cone.append(a)
-            new_ws = [a for a in remaining if len(set(a.getVars()) & cone_vars) > 0]
+            new_ws = [a for a in remaining if
+                      len(set(a.getVars()) & cone_vars) > 0]
             remaining = [a for a in remaining if a not in new_ws]
             ws = ws + new_ws
         return cone

@@ -1,5 +1,6 @@
 from symbolic.args import *
 
+
 @symbolic(d={})
 def dictbool(d):
     x = d or {}
@@ -7,6 +8,6 @@ def dictbool(d):
         return 0
     return 1
 
+
 def expected_result():
-	return [0, 1]
-    
+    return [0, 1]

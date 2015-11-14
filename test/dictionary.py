@@ -4,6 +4,7 @@
 
 from lib.se_dict import SymbolicDictionary
 
+
 def dictionary(in1):
     d = SymbolicDictionary({})
     d[3] = 10
@@ -13,5 +14,6 @@ def dictionary(in1):
     else:
         return 2
 
+
 def expected_result():
-	return [1,2]
+    return [1, 2]

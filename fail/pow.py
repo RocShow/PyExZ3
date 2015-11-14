@@ -3,10 +3,11 @@
 # As a result, we never get to calling the theorem prover
 
 def pow(x):
-  if 4 == x**2:
-    return "POW"
-  else:
-    return "OTHER"
+    if 4 == x ** 2:
+        return "POW"
+    else:
+        return "OTHER"
+
 
 def expected_result():
-  return [ "OTHER", "POW" ]
+    return ["OTHER", "POW"]

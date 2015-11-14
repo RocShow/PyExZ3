@@ -1,4 +1,4 @@
-def cseppento1(x,y):
+def cseppento1(x, y):
     # based on B2a_IfElse by Lajos Cseppento
     # see: L. Cseppento: Comparison of Symbolic Execution Based Test Generation Tools, B.Sc. Thesis, Budapest University of Technology and Economics, 2013.
     if (x > 0 and y > 0):
@@ -18,5 +18,6 @@ def cseppento1(x,y):
         # impossible branch
         return -2
 
+
 def expected_result():
-    return [0,0,0,1,2,3,4] # should it be [0,1,2,3,4] instead?
+    return [0, 0, 0, 1, 2, 3, 4]  # should it be [0,1,2,3,4] instead?

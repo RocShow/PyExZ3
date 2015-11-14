@@ -36,15 +36,18 @@ class CVCString(CVCExpression):
         return v
 
     def len(self):
-        return CVCInteger(self.em.mkExpr(CVC4.STRING_LENGTH, self.cvc_expr), self.solver)
+        return CVCInteger(self.em.mkExpr(CVC4.STRING_LENGTH, self.cvc_expr),
+                          self.solver)
 
     def __add__(self, other):
         return CVCString(self.em.mkExpr(CVC4.STRING_CONCAT,
-            self.cvc_expr, other.cvc_expr), self.solver)
+                                        self.cvc_expr, other.cvc_expr),
+                         self.solver)
 
     def __contains__(self, item):
         return CVCExpression(self.em.mkExpr(CVC4.STRING_STRCTN,
-            self.cvc_expr, item.cvc_expr), self.solver)
+                                            self.cvc_expr, item.cvc_expr),
+                             self.solver)
 
     def __getitem__(self, item):
         if isinstance(item, slice):
@@ -60,7 +63,8 @@ class CVCString(CVCExpression):
             self.solver.guards.append(self.len() > item.start)
             self.solver.guards.append(self.len() >= item.stop)
             return CVCString(self.em.mkExpr(CVC4.STRING_SUBSTR, self.cvc_expr,
-                                            item.start.cvc_expr, offset.cvc_expr),
+                                            item.start.cvc_expr,
+                                            offset.cvc_expr),
                              self.solver)
         return CVCString(self.em.mkExpr(CVC4.STRING_CHARAT, self.cvc_expr,
                                         item.cvc_expr), self.solver)
@@ -75,7 +79,9 @@ class CVCString(CVCExpression):
             self.solver)
 
     def replace(self, old, new):
-        return CVCString(self.em.mkExpr(CVC4.STRING_STRREPL, self.cvc_expr, old.cvc_expr, new.cvc_expr), self.solver)
+        return CVCString(
+            self.em.mkExpr(CVC4.STRING_STRREPL, self.cvc_expr, old.cvc_expr,
+                           new.cvc_expr), self.solver)
 
     def startswith(self, prefix):
         return CVCExpression(self.em.mkExpr(CVC4.STRING_PREFIX,

@@ -1,5 +1,6 @@
 from math import sqrt
 
+
 # sqrt is handled concretely, just as with pow (**)
 
 def sqrttest(in1):
@@ -9,5 +10,6 @@ def sqrttest(in1):
         return 2
     return 0
 
+
 def expected_result():
-    return [1,2]
+    return [1, 2]

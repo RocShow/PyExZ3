@@ -1,4 +1,10 @@
-{ "name": "cpp2",  
-  "extend": "cpp",  
-  "extraKeywords": ["function","override","var","instanceof"]
+{
+  "name": "cpp2",
+  "extend": "cpp",
+  "extraKeywords": [
+    "function",
+    "override",
+    "var",
+    "instanceof"
+  ]
 }

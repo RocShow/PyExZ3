@@ -3,7 +3,7 @@ from symbolic.args import symbolic
 
 @symbolic(s="x")
 def strmiddle(s):
-    x = "A"+s+"C"
+    x = "A" + s + "C"
     if "B" in x:
         return 0
     else:

@@ -56,19 +56,29 @@ class CVCInteger(CVCExpression):
             return numerator / denominator
 
     def __add__(self, other):
-        return CVCInteger(self.em.mkExpr(CVC4.PLUS, self.cvc_expr, other.cvc_expr), self.solver)
+        return CVCInteger(
+            self.em.mkExpr(CVC4.PLUS, self.cvc_expr, other.cvc_expr),
+            self.solver)
 
     def __sub__(self, other):
-        return CVCInteger(self.em.mkExpr(CVC4.MINUS, self.cvc_expr, other.cvc_expr), self.solver)
+        return CVCInteger(
+            self.em.mkExpr(CVC4.MINUS, self.cvc_expr, other.cvc_expr),
+            self.solver)
 
     def __mul__(self, other):
-        return CVCInteger(self.em.mkExpr(CVC4.MULT, self.cvc_expr, other.cvc_expr), self.solver)
+        return CVCInteger(
+            self.em.mkExpr(CVC4.MULT, self.cvc_expr, other.cvc_expr),
+            self.solver)
 
     def __truediv__(self, other):
-        return CVCInteger(self.em.mkExpr(CVC4.DIVISION, self.cvc_expr, other.cvc_expr), self.solver)
+        return CVCInteger(
+            self.em.mkExpr(CVC4.DIVISION, self.cvc_expr, other.cvc_expr),
+            self.solver)
 
     def __mod__(self, other):
-        return CVCInteger(self.em.mkExpr(CVC4.INTS_MODULUS, self.cvc_expr, other.cvc_expr), self.solver)
+        return CVCInteger(
+            self.em.mkExpr(CVC4.INTS_MODULUS, self.cvc_expr, other.cvc_expr),
+            self.solver)
 
     def __or__(self, other):
         return self._bvhelper(other, CVC4.BITVECTOR_OR)
@@ -90,13 +100,15 @@ class CVCInteger(CVCExpression):
         return self.em.mkExpr(bvconversion, self.cvc_expr)
 
     def bvsanity(self):
-        return self == CVCExpression(self.em.mkExpr(CVC4.BITVECTOR_TO_NAT, self.tobv()), self.solver)
+        return self == CVCExpression(
+            self.em.mkExpr(CVC4.BITVECTOR_TO_NAT, self.tobv()), self.solver)
 
     def _bvhelper(self, other, op):
         calculation = self.em.mkExpr(op, self.tobv(), other.tobv())
         self.solver.guards.append(self.bvsanity() & other.bvsanity())
         self._assert_bvbounds(calculation)
-        return CVCInteger(self.em.mkExpr(CVC4.BITVECTOR_TO_NAT, calculation), self.solver)
+        return CVCInteger(self.em.mkExpr(CVC4.BITVECTOR_TO_NAT, calculation),
+                          self.solver)
 
     def _assert_bvbounds(self, bvexpr):
         bitextract = self.em.mkConst(CVC4.BitVectorExtract(0, 0))

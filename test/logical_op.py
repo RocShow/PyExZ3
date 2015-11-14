@@ -11,5 +11,6 @@ def logical_op(in1, in2):
 
     return 0
 
+
 def expected_result():
-	return [2,3]
+    return [2, 3]

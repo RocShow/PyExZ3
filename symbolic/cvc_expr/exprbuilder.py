@@ -1,10 +1,10 @@
 import logging
 
+import utils
 from symbolic.cvc_expr.integer import CVCInteger
 from symbolic.cvc_expr.string import CVCString
 from symbolic.symbolic_types import SymbolicInteger, SymbolicStr
 from symbolic.symbolic_types.symbolic_type import SymbolicObject
-import utils
 
 log = logging.getLogger("se.cvc_expr.exprbuilder")
 
@@ -29,7 +29,8 @@ class ExprBuilder(object):
         sym_expr = self._astToCVCExpr(pred.symtype, env)
         if env is None:
             if not sym_expr.cvc_expr.getType().isBoolean():
-                sym_expr = (sym_expr == CVCInteger.constant(0, self.solver)).not_op()
+                sym_expr = (
+                sym_expr == CVCInteger.constant(0, self.solver)).not_op()
             if not pred.result:
                 sym_expr = sym_expr.not_op()
         else:
@@ -51,7 +52,8 @@ class ExprBuilder(object):
 
     def _wrapIf(self, expr, env):
         if env is None:
-            return expr.ite(CVCInteger.constant(1, self.solver), CVCInteger.constant(0, self.solver))
+            return expr.ite(CVCInteger.constant(1, self.solver),
+                            CVCInteger.constant(0, self.solver))
         else:
             return expr
 
@@ -112,7 +114,10 @@ class ExprBuilder(object):
                     return self._wrapIf((cvc_l == cvc_r), env)
             elif op == "!=":
                 if cvc_l is None or cvc_r is None:
-                    return self._wrapIf(self._astToCVCExpr(0, env) == self._astToCVCExpr(0, env), env)
+                    return self._wrapIf(
+                        self._astToCVCExpr(0, env) == self._astToCVCExpr(0,
+                                                                         env),
+                        env)
                 else:
                     return self._wrapIf((cvc_l != cvc_r), env)
             elif op == "<":
@@ -126,7 +131,8 @@ class ExprBuilder(object):
             elif op == "in":
                 return self._wrapIf((cvc_l.__contains__(cvc_r)), env)
             else:
-                utils.crash("Unknown BinOp during conversion from ast to CVC (expressions): %s" % op)
+                utils.crash(
+                    "Unknown BinOp during conversion from ast to CVC (expressions): %s" % op)
 
         elif isinstance(expr, SymbolicObject):
             if expr.isVariable():
@@ -149,5 +155,5 @@ class ExprBuilder(object):
         elif expr is None:
             return None
         else:
-            utils.crash("Unknown node during conversion from ast to CVC (expressions): %s" % expr)
-    
+            utils.crash(
+                "Unknown node during conversion from ast to CVC (expressions): %s" % expr)

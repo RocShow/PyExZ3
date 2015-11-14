@@ -1,11 +1,13 @@
 from symbolic.args import *
 
+
 class Foo():
     def __init__(self, var):
         self.var = var
 
     def __len__(self):
         return self.var
+
 
 @symbolic(a=0)
 def len_test(a):
@@ -15,6 +17,6 @@ def len_test(a):
     else:
         return 0
 
+
 def expected_result():
     return [0, 1]
-
